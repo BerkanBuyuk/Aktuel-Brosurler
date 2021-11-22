@@ -34,17 +34,26 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
   @override
   Widget build(BuildContext context) {
+
+    var ekranBilgisi = MediaQuery.of(context);
+    final double ekranYuksekligi = ekranBilgisi.size.height;
+    final double ekranGenisligi = ekranBilgisi.size.width;
+
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: ekranYuksekligi/12,
           title: Text("Aktüel Broşürler"),
+          centerTitle: true,
           bottom: TabBar(
             tabs: [
               Tab(text: "Broşürler", icon: Icon(Icons.text_snippet),),
               Tab(text: "Favoriler", icon: Icon(Icons.favorite),),
               Tab(text: "Marketler", icon: Icon(Icons.shopping_cart),),
             ],
+            unselectedLabelColor: Colors.black,
             indicatorColor: Colors.white,
             labelColor: Colors.white,
           ),

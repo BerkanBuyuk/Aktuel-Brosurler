@@ -1,4 +1,12 @@
 import 'dart:ui';
+import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Ayarlar.dart';
+import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Hakkinda.dart';
+import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Hatirlatmalar.dart';
+import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Iletisim.dart';
+import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Indirilenler.dart';
+import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Kaydedilenler.dart';
+import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/KullanimIpuclari.dart';
+import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/TavsiyeEdin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -73,7 +81,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   ],
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.redAccent,
+                  color: Colors.red,
                 ),
               ),
             ),
@@ -173,6 +181,53 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
     Navigator.of(context).pop();
     switch (index){
 
+      case 0:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Hatirlatmalar(),
+        ));
+        break;
+
+      case 1:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Indirilenler(),
+        ));
+        break;
+
+      case 2:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Kaydedilenler(),
+        ));
+        break;
+
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Ayarlar(),
+        ));
+        break;
+
+      case 4:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => TavsiyeEdin(),
+        ));
+        break;
+
+      case 5:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Iletisim(),
+        ));
+        break;
+
+      case 6:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Hakkinda(),
+        ));
+        break;
+
+      case 7:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => KullanimIpuclari(),
+        ));
+        break;
     }
   }
 }
