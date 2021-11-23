@@ -1,5 +1,3 @@
-import 'package:aktuel_brosurler/NotlarApi/Notlar.dart';
-import 'package:aktuel_brosurler/NotlarApi/NotlarCevap.dart';
 import 'package:aktuel_brosurler/TabsS%C4%B1n%C4%B1flar%C4%B1/BrosurlerList.dart';
 import 'package:flutter/material.dart';
 

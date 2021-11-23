@@ -1,6 +1,5 @@
-
-import 'package:aktuel_brosurler/NotlarApi/Notlar.dart';
-import 'package:aktuel_brosurler/NotlarApi/NotlarCevap.dart';
+import 'package:aktuel_brosurler/MarketlerApi/Marketler.dart';
+import 'package:aktuel_brosurler/MarketlerApi/MarketlerCevap.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:convert';
@@ -9,19 +8,18 @@ import 'package:http/http.dart' as http;
 class BrosurlerList extends StatefulWidget {
   const BrosurlerList({Key? key}) : super(key: key);
 
-
   @override
   _BrosurlerListState createState() => _BrosurlerListState();
 }
 
 class _BrosurlerListState extends State<BrosurlerList> {
 
-  List<Notlar> parseNotlarCevap(String cevap){
-    return NotlarCevap.fromJson(json.decode(cevap)).notlarListesi;
+  List<Marketler> parseNotlarCevap(String cevap){
+    return MarketlerCevap.fromJson(json.decode(cevap)).marketlerListesi;
   }
 
-  Future<List<Notlar>> tumNotlarGoster() async {
-    var url = Uri.parse("https://raw.githubusercontent.com/BerkanBuyuk/Aktuel-Brosurler/master/api.json?token=ATUAH2RLL54PEVBGM2CSHILBUZRFU");
+  Future<List<Marketler>> tumMarketleriGoster() async {
+    var url = Uri.parse("https://raw.githubusercontent.com/BerkanBuyuk/Aktuel-Brosurler/master/api.json?token=ATUAH2RQT5Q223OHF3WOLN3BUZRRM");
     var cevap = await http.get(url);
     return parseNotlarCevap(cevap.body);
   }
@@ -38,15 +36,15 @@ class _BrosurlerListState extends State<BrosurlerList> {
     final double ekranYuksekligi = ekranBilgisi.size.height;
     final double ekranGenisligi = ekranBilgisi.size.width;
 
-    return FutureBuilder<List<Notlar>>(
-        future: tumNotlarGoster(),
+    return FutureBuilder<List<Marketler>>(
+        future: tumMarketleriGoster(),
     builder: (context, snapshot){
     if(snapshot.hasData){
-    var notlarListesi = snapshot.data;
+    var marketlerListesi = snapshot.data;
     return ListView.builder(
-      itemCount: notlarListesi!.length,
+      itemCount: marketlerListesi!.length,
       itemBuilder: (context, indeks){
-        var not = notlarListesi[indeks];
+        var not = marketlerListesi[indeks];
         return GestureDetector(
           onTap: (){},
           child: Card(
@@ -56,7 +54,7 @@ class _BrosurlerListState extends State<BrosurlerList> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Image.network(urlBim),
+                    Image.network(urlA101),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -79,8 +77,10 @@ class _BrosurlerListState extends State<BrosurlerList> {
       );
     }else{
       return Center(
-        child: Text("Veri gelmedi"),
-          );
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+        ),
+      );
         }
       },
     );
