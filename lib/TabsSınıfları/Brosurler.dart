@@ -17,52 +17,9 @@ class Brosurler extends StatefulWidget {
 
 class _BrosurlerState extends State<Brosurler> {
 
-  List<Notlar> parseNotlarCevap(String cevap){
-    return NotlarCevap.fromJson(json.decode(cevap)).notlarListesi;
-  }
-
-  Future<List<Notlar>> tumNotlarGoster() async {
-    var url = Uri.parse("https://raw.githubusercontent.com/BerkanBuyuk/notlar/main/tum_notlar1.php");
-    var cevap = await http.get(url);
-    return parseNotlarCevap(cevap.body);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Notlar>>(
-      future: tumNotlarGoster(),
-      builder: (context, snapshot){
-        if(snapshot.hasData){
-          var notlarListesi = snapshot.data;
-          return ListView.builder(
-            itemCount: notlarListesi!.length,
-            itemBuilder: (context, indeks){
-              var not = notlarListesi[indeks];
-              return GestureDetector(
-                onTap: (){
-
-                },
-                child: Card(
-                  child: SizedBox(height: 50,
-                    child: Row(
-                      children: [
-                        Text(not.ders_adi),
-                        Text(not.not1),
-                        Text(not.not2),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          );
-        }else{
-          return Center(
-            child: Text("Veri gelmedi"),
-          );
-        }
-      },
-    );
+    return BrosurlerList();
   }
 }
 

@@ -1,4 +1,6 @@
 
+import 'package:aktuel_brosurler/NotlarApi/Notlar.dart';
+import 'package:aktuel_brosurler/NotlarApi/NotlarCevap.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:convert';
@@ -13,6 +15,18 @@ class BrosurlerList extends StatefulWidget {
 }
 
 class _BrosurlerListState extends State<BrosurlerList> {
+
+  List<Notlar> parseNotlarCevap(String cevap){
+    return NotlarCevap.fromJson(json.decode(cevap)).notlarListesi;
+  }
+
+  Future<List<Notlar>> tumNotlarGoster() async {
+    var url = Uri.parse("https://raw.githubusercontent.com/BerkanBuyuk/Aktuel-Brosurler/master/api.json?token=ATUAH2RGY5ZT5KMQ243KYZLBUZM2K");
+    var cevap = await http.get(url);
+    return parseNotlarCevap(cevap.body);
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -23,10 +37,15 @@ class _BrosurlerListState extends State<BrosurlerList> {
     final double ekranYuksekligi = ekranBilgisi.size.height;
     final double ekranGenisligi = ekranBilgisi.size.width;
 
+    return FutureBuilder<List<Notlar>>(
+        future: tumNotlarGoster(),
+    builder: (context, snapshot){
+    if(snapshot.hasData){
+    var notlarListesi = snapshot.data;
     return ListView.builder(
-      itemCount: 5,
+      itemCount: notlarListesi!.length,
       itemBuilder: (context, indeks){
-        var kisi = [indeks];
+        var not = notlarListesi[indeks];
         return GestureDetector(
           onTap: (){},
           child: Card(
@@ -36,28 +55,32 @@ class _BrosurlerListState extends State<BrosurlerList> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-
-                    /*
                     Image.network(urlBim),
-                    //Image.network("http://kasimadalan.pe.hu/filmler/resimler/birzamanlaranadoluda.png"),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Bim", style: TextStyle(fontWeight: FontWeight.bold),),
-                          Text("30 Kasım Bim Broşürü"),
-                          Text("3 Sayfa"),
-                        ],
+                          Text(not.market_adi, style: TextStyle(fontWeight: FontWeight.bold),),
+                          Text(not.aciklama),
+                          Text(not.sayfa_sayisi),
+                          ],
+                        ),
                       ),
-                    )*/
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        );
+          );
+        },
+      );
+    }else{
+      return Center(
+        child: Text("Veri gelmedi"),
+          );
+        }
       },
     );
   }
