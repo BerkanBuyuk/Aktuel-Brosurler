@@ -10,6 +10,15 @@ class FavorilerList extends StatefulWidget {
 class _FavorilerListState extends State<FavorilerList> {
   @override
   Widget build(BuildContext context) {
+
+
+    final urlBim = 'https://upload.wikimedia.org/wikipedia/commons/3/30/Logo_of_B%C4%B0M.PNG';
+
+    var ekranBilgisi = MediaQuery.of(context);
+    final double ekranYuksekligi = ekranBilgisi.size.height;
+    final double ekranGenisligi = ekranBilgisi.size.width;
+
+
     return ListView.builder(
       itemCount: 10,
       itemBuilder: (context, indeks){
@@ -22,35 +31,17 @@ class _FavorilerListState extends State<FavorilerList> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        radius: 30,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("kisi.kisi_ad"),
-                          Text("kisi.kisi_tel"),
-                        ],
-                      ),
-                    ),
-                    Spacer(),
+                    Image.network(urlBim),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("18:31", style: TextStyle(color: Colors.blueGrey),),
-                          Spacer(),
-                          Text("data"),
+                          Text("Bim", style: TextStyle(fontWeight: FontWeight.bold),),
+                          Text("30 Kasım Bim Broşürü"),
+                          Text("3 Sayfa"),
                         ],
                       ),
                     ),
