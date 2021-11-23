@@ -21,7 +21,7 @@ class _BrosurlerListState extends State<BrosurlerList> {
   }
 
   Future<List<Notlar>> tumNotlarGoster() async {
-    var url = Uri.parse("https://raw.githubusercontent.com/BerkanBuyuk/Aktuel-Brosurler/master/api.json?token=ATUAH2RGY5ZT5KMQ243KYZLBUZM2K");
+    var url = Uri.parse("https://raw.githubusercontent.com/BerkanBuyuk/Aktuel-Brosurler/master/api.json?token=ATUAH2RLL54PEVBGM2CSHILBUZRFU");
     var cevap = await http.get(url);
     return parseNotlarCevap(cevap.body);
   }
@@ -31,6 +31,7 @@ class _BrosurlerListState extends State<BrosurlerList> {
   Widget build(BuildContext context) {
 
     final urlBim = 'https://upload.wikimedia.org/wikipedia/commons/3/30/Logo_of_B%C4%B0M.PNG';
+    final urlA101 = 'https://upload.wikimedia.org/wikipedia/commons/b/bd/A101_LOGO.jpg';
 
 
     var ekranBilgisi = MediaQuery.of(context);

@@ -4,13 +4,13 @@
       "market_id":"1",
       "market_adi":"Bim",
       "aciklama":"30 Kasım Bim Kataloğu",
-      "sayfa_sayisi":"2"
+      "sayfa_sayisi":"2 sayfa"
     },
     {
       "market_id":"2",
       "market_adi":"A101",
       "aciklama":"30 Kasım A101 Kataloğu",
-      "sayfa_sayisi":"3"
+      "sayfa_sayisi":"3 sayfa"
     }
   ],
   "success":1
