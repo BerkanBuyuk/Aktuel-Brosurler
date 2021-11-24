@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:aktuel_brosurler/MarketlerApi/Marketler.dart';
 import 'package:aktuel_brosurler/MarketlerApi/MarketlerCevap.dart';
 import 'package:flutter/material.dart';
@@ -19,17 +21,18 @@ class _BrosurlerListState extends State<BrosurlerList> {
   }
 
   Future<List<Marketler>> tumMarketleriGoster() async {
-    var url = Uri.parse("https://raw.githubusercontent.com/BerkanBuyuk/Aktuel-Brosurler/master/api.json?token=ATUAH2RQT5Q223OHF3WOLN3BUZRRM");
+    var url = Uri.parse("http://10.0.2.2/notlar1/tum_notlar.php");
     var cevap = await http.get(url);
     return parseNotlarCevap(cevap.body);
   }
+
 
 
   @override
   Widget build(BuildContext context) {
 
     final urlBim = 'https://upload.wikimedia.org/wikipedia/commons/3/30/Logo_of_B%C4%B0M.PNG';
-    final urlA101 = 'https://upload.wikimedia.org/wikipedia/commons/b/bd/A101_LOGO.jpg';
+    final urlA101 = 'http://10.0.2.2/notlar1/resimler/bim.png';
 
 
     var ekranBilgisi = MediaQuery.of(context);
@@ -55,6 +58,13 @@ class _BrosurlerListState extends State<BrosurlerList> {
                 child: Row(
                   children: [
                     //Image.network(urlA101),
+                    SizedBox(
+                      width: ekranGenisligi/3,
+                        height: ekranYuksekligi/10,
+                        child: Image.network("http://10.0.2.2/notlar1/resimler/${not.market_resim}"
+                        ),
+                    ),
+
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(

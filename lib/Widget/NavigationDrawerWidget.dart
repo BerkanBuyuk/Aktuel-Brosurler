@@ -56,7 +56,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
             SizedBox(
               height: ekranYuksekligi/9,
               child: DrawerHeader(
-                //padding: EdgeInsets.zero,
+                padding: EdgeInsets.all(10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
