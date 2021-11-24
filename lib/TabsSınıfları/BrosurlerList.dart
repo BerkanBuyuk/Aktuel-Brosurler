@@ -54,7 +54,7 @@ class _BrosurlerListState extends State<BrosurlerList> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Image.network(urlA101),
+                    //Image.network(urlA101),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
