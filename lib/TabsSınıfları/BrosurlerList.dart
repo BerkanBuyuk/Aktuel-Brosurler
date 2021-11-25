@@ -1,7 +1,8 @@
 import 'dart:io';
 
-import 'package:aktuel_brosurler/MarketlerApi/Marketler.dart';
-import 'package:aktuel_brosurler/MarketlerApi/MarketlerCevap.dart';
+import 'package:aktuel_brosurler/Model/Marketler.dart';
+import 'package:aktuel_brosurler/Model/MarketlerCevap.dart';
+import 'package:aktuel_brosurler/TabsS%C4%B1n%C4%B1flar%C4%B1/MarketBrosuru.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:convert';
@@ -21,7 +22,7 @@ class _BrosurlerListState extends State<BrosurlerList> {
   }
 
   Future<List<Marketler>> tumMarketleriGoster() async {
-    var url = Uri.parse("http://10.0.2.2/notlar1/tum_notlar.php");
+    var url = Uri.parse("http://10.0.2.2/marketler/tum_marketler.php");
     var cevap = await http.get(url);
     return parseNotlarCevap(cevap.body);
   }
@@ -31,25 +32,24 @@ class _BrosurlerListState extends State<BrosurlerList> {
   @override
   Widget build(BuildContext context) {
 
-    final urlBim = 'https://upload.wikimedia.org/wikipedia/commons/3/30/Logo_of_B%C4%B0M.PNG';
-    final urlA101 = 'http://10.0.2.2/notlar1/resimler/bim.png';
-
 
     var ekranBilgisi = MediaQuery.of(context);
     final double ekranYuksekligi = ekranBilgisi.size.height;
     final double ekranGenisligi = ekranBilgisi.size.width;
 
     return FutureBuilder<List<Marketler>>(
-        future: tumMarketleriGoster(),
+      future: tumMarketleriGoster(),
     builder: (context, snapshot){
     if(snapshot.hasData){
     var marketlerListesi = snapshot.data;
     return ListView.builder(
       itemCount: marketlerListesi!.length,
       itemBuilder: (context, indeks){
-        var not = marketlerListesi[indeks];
+        var market = marketlerListesi[indeks];
         return GestureDetector(
-          onTap: (){},
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => MarketBrosuru(marketin_adi: market.market_adi)));
+          },
           child: Card(
             child: SizedBox(
               height: ekranYuksekligi/9,
@@ -57,12 +57,10 @@ class _BrosurlerListState extends State<BrosurlerList> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    //Image.network(urlA101),
                     SizedBox(
                       width: ekranGenisligi/3,
                         height: ekranYuksekligi/10,
-                        child: Image.network("http://10.0.2.2/notlar1/resimler/${not.market_resim}"
-                        ),
+                        child: Image.network("http://10.0.2.2/marketler/resimler/${market.market_resim}"),
                     ),
 
                     Padding(
@@ -71,9 +69,11 @@ class _BrosurlerListState extends State<BrosurlerList> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(not.market_adi, style: TextStyle(fontWeight: FontWeight.bold),),
-                          Text(not.aciklama),
-                          Text(not.sayfa_sayisi),
+                          Text(market.market_adi, style: TextStyle(fontWeight: FontWeight.bold),),
+                          Spacer(),
+                          Text(market.aciklama),
+                          Spacer(),
+                          Text(market.sayfa_sayisi),
                           ],
                         ),
                       ),

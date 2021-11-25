@@ -1,4 +1,4 @@
-import 'package:aktuel_brosurler/MarketlerApi/Marketler.dart';
+import 'package:aktuel_brosurler/Model/Marketler.dart';
 
 class MarketlerCevap {
   int success;
