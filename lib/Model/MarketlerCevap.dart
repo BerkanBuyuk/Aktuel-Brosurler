@@ -8,8 +8,8 @@ class MarketlerCevap {
 
   factory MarketlerCevap.fromJson(Map<String, dynamic> json){
     var jsonArray = json["marketler"] as List;
-    List<Marketler> notlarListesi = jsonArray.map((jsonArrayNesnesi) => Marketler.fromJson(jsonArrayNesnesi)).toList();
+    List<Marketler> marketlerListesi = jsonArray.map((jsonArrayNesnesi) => Marketler.fromJson(jsonArrayNesnesi)).toList();
 
-    return MarketlerCevap(json["success"] as int, notlarListesi);
+    return MarketlerCevap(json["success"] as int, marketlerListesi);
   }
 }

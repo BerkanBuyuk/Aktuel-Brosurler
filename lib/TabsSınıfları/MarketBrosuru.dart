@@ -63,6 +63,7 @@ class _MarketBrosuruState extends State<MarketBrosuru> {
                       height: ekranYuksekligi/2,
                       initialPage: 0,
                       autoPlay: true,
+                      autoPlayAnimationDuration: Duration(seconds: 3),
                       viewportFraction: 1,
                       enlargeCenterPage: true,
                       onPageChanged: (index, reason){
@@ -74,7 +75,7 @@ class _MarketBrosuruState extends State<MarketBrosuru> {
                   itemCount: marketlerListesi!.length,
                   itemBuilder: (context, indeks, realIndex){
                     var market = marketlerListesi[indeks];
-                    return buildImage('http://10.0.2.2/marketler/resimler/${market.market_resim}', indeks);
+                    return buildImage('http://10.0.2.2/marketler/resimler/brosurler/bim/', indeks);
                   },
                 ),
                 const SizedBox(height: 12,),
@@ -85,7 +86,7 @@ class _MarketBrosuruState extends State<MarketBrosuru> {
                     activeDotColor: Colors.black,
                     dotColor: Colors.red,
                   ),
-                )
+                ),
               ],
             ),
           );
