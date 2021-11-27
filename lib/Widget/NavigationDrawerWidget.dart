@@ -1,12 +1,12 @@
 import 'dart:ui';
-import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Ayarlar.dart';
-import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Hakkinda.dart';
-import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Hatirlatmalar.dart';
-import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Iletisim.dart';
-import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Indirilenler.dart';
-import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/Kaydedilenler.dart';
-import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/KullanimIpuclari.dart';
-import 'package:aktuel_brosurler/DrawerS%C4%B1n%C4%B1flar%C4%B1/TavsiyeEdin.dart';
+import 'package:aktuel_brosurler/DrawerSiniflari/Ayarlar.dart';
+import 'package:aktuel_brosurler/DrawerSiniflari/Hakkinda.dart';
+import 'package:aktuel_brosurler/DrawerSiniflari/Hatirlatmalar.dart';
+import 'package:aktuel_brosurler/DrawerSiniflari/Iletisim.dart';
+import 'package:aktuel_brosurler/DrawerSiniflari/Indirilenler.dart';
+import 'package:aktuel_brosurler/DrawerSiniflari/Kaydedilenler.dart';
+import 'package:aktuel_brosurler/DrawerSiniflari/KullanimIpuclari.dart';
+import 'package:aktuel_brosurler/DrawerSiniflari//TavsiyeEdin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

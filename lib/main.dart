@@ -1,16 +1,15 @@
-import 'package:aktuel_brosurler/TabsS%C4%B1n%C4%B1flar%C4%B1/Brosurler.dart';
-import 'package:aktuel_brosurler/TabsS%C4%B1n%C4%B1flar%C4%B1/Favoriler.dart';
-import 'package:aktuel_brosurler/TabsS%C4%B1n%C4%B1flar%C4%B1/Marketler.dart';
-import 'package:aktuel_brosurler/Widget/NavigationDrawerWidget.dart';
+import 'package:aktuel_brosurler/TabsSiniflari/FilmlerSayfa.dart';
+import 'package:aktuel_brosurler/TabsSiniflari/Kategoriler.dart';
+import 'package:aktuel_brosurler/TabsSiniflari/KategorilerCevap.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,55 +17,69 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.red,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AnaSayfa(),
+      home: Anasayfa(),
     );
   }
 }
 
-class AnaSayfa extends StatefulWidget {
-
+class Anasayfa extends StatefulWidget {
   @override
-  State<AnaSayfa> createState() => _AnaSayfaState();
+  _AnasayfaState createState() => _AnasayfaState();
 }
 
-class _AnaSayfaState extends State<AnaSayfa> {
+class _AnasayfaState extends State<Anasayfa> {
 
+  List<Kategoriler> parseKategorilerCevap(String cevap){
+      return KategorilerCevap.fromJson(json.decode(cevap)).kategorilerListesi;
+  }
+
+  Future<List<Kategoriler>> tumKategorileriGoster() async {
+    var url = Uri.parse("http://10.0.2.2/filmler/tum_kategoriler.php");
+    var cevap = await http.get(url);
+    return parseKategorilerCevap(cevap.body);
+  }
+  
   @override
   Widget build(BuildContext context) {
-
-    var ekranBilgisi = MediaQuery.of(context);
-    final double ekranYuksekligi = ekranBilgisi.size.height;
-    final double ekranGenisligi = ekranBilgisi.size.width;
-
-
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: ekranYuksekligi/12,
-          title: Text("Aktüel Broşürler"),
-          centerTitle: true,
-          bottom: TabBar(
-            tabs: [
-              Tab(text: "Broşürler", icon: Icon(Icons.text_snippet),),
-              Tab(text: "Favoriler", icon: Icon(Icons.favorite),),
-              Tab(text: "Marketler", icon: Icon(Icons.shopping_cart),),
-            ],
-            unselectedLabelColor: Colors.black,
-            indicatorColor: Colors.white,
-            labelColor: Colors.white,
-          ),
-        ),
-        drawer: NavigationDrawerWidget(),
-        body: TabBarView(
-          children: [
-            Brosurler(),
-            Favoriler(),
-            Marketler(),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Kategoriler"),
       ),
+      body: FutureBuilder<List<Kategoriler>>(
+        future: tumKategorileriGoster(),
+        builder: (context,snapshot){
+          if(snapshot.hasData){
+            var kategoriListesi = snapshot.data;
+            return ListView.builder(
+              itemCount: kategoriListesi!.length,
+              itemBuilder: (context,indeks){
+                var kategori = kategoriListesi[indeks];
+                return GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => FilmlerSayfa(kategori: kategori,)));
+                  },
+                  child: Card(
+                    child: SizedBox(height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.network("http://10.0.2.2/filmler/resimler/${kategori.kategori_resim}"),
+                          Text(kategori.kategori_ad),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }else{
+            return Center();
+          }
+        },
+      ),
+
     );
   }
 }
