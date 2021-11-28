@@ -1,6 +1,6 @@
-import 'package:aktuel_brosurler/TabsSiniflari/FilmlerSayfa.dart';
-import 'package:aktuel_brosurler/TabsSiniflari/Kategoriler.dart';
-import 'package:aktuel_brosurler/TabsSiniflari/KategorilerCevap.dart';
+import 'package:aktuel_brosurler/Models/FilmlerSayfa.dart';
+import 'package:aktuel_brosurler/Models/Kategoriler.dart';
+import 'package:aktuel_brosurler/Models/KategorilerCevap.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -32,27 +32,37 @@ class Anasayfa extends StatefulWidget {
 class _AnasayfaState extends State<Anasayfa> {
 
   List<Kategoriler> parseKategorilerCevap(String cevap){
-      return KategorilerCevap.fromJson(json.decode(cevap)).kategorilerListesi;
+    return KategorilerCevap.fromJson(json.decode(cevap)).kategorilerListesi;
   }
 
   Future<List<Kategoriler>> tumKategorileriGoster() async {
-    var url = Uri.parse("http://10.0.2.2/filmler/tum_kategoriler.php");
+    var url = Uri.parse("http://10.0.2.2/aktuel/tum_kategoriler.php");
     var cevap = await http.get(url);
     return parseKategorilerCevap(cevap.body);
   }
-  
+
   @override
   Widget build(BuildContext context) {
+
+    var ekranBilgisi = MediaQuery.of(context);
+    final double ekranYuksekligi = ekranBilgisi.size.height;
+    final double ekranGenisligi = ekranBilgisi.size.width;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Kategoriler"),
+        title: Text("Aktuel Kataloğu"),
+        centerTitle: true,
       ),
       body: FutureBuilder<List<Kategoriler>>(
         future: tumKategorileriGoster(),
         builder: (context,snapshot){
           if(snapshot.hasData){
             var kategoriListesi = snapshot.data;
-            return ListView.builder(
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 2 / 3.5,
+              ),
               itemCount: kategoriListesi!.length,
               itemBuilder: (context,indeks){
                 var kategori = kategoriListesi[indeks];
@@ -61,12 +71,16 @@ class _AnasayfaState extends State<Anasayfa> {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => FilmlerSayfa(kategori: kategori,)));
                   },
                   child: Card(
-                    child: SizedBox(height: 50,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    child: SizedBox(
+                      height: 50,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Image.network("http://10.0.2.2/filmler/resimler/${kategori.kategori_resim}"),
+                          Spacer(),
+                          Image.network("http://10.0.2.2/aktuel/resimler/marketler/${kategori.kategori_resim}"),
+                          Spacer(),
                           Text(kategori.kategori_ad),
+                          Spacer(),
                         ],
                       ),
                     ),
