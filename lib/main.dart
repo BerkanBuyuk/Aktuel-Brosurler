@@ -1,16 +1,15 @@
-import 'package:aktuel_brosurler/Models/BrosurlerSayfa.dart';
-import 'package:aktuel_brosurler/Models/Kategoriler.dart';
-import 'package:aktuel_brosurler/Models/KategorilerCevap.dart';
+import 'package:aktuel_brosurler/TabsSiniflari/Brosurler.dart';
+import 'package:aktuel_brosurler/TabsSiniflari/Favoriler.dart';
+import 'package:aktuel_brosurler/TabsSiniflari/Marketler.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,29 +17,19 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.red,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Anasayfa(),
+      home: AnaSayfa(),
     );
   }
 }
 
-class Anasayfa extends StatefulWidget {
+class AnaSayfa extends StatefulWidget {
+
   @override
-  _AnasayfaState createState() => _AnasayfaState();
+  State<AnaSayfa> createState() => _AnaSayfaState();
 }
 
-class _AnasayfaState extends State<Anasayfa> {
-
-  List<Kategoriler> parseKategorilerCevap(String cevap){
-    return KategorilerCevap.fromJson(json.decode(cevap)).kategorilerListesi;
-  }
-
-  Future<List<Kategoriler>> tumKategorileriGoster() async {
-    var url = Uri.parse("http://10.0.2.2/aktuel/tum_kategoriler.php");
-    var cevap = await http.get(url);
-    return parseKategorilerCevap(cevap.body);
-  }
+class _AnaSayfaState extends State<AnaSayfa> {
 
   @override
   Widget build(BuildContext context) {
@@ -49,60 +38,34 @@ class _AnasayfaState extends State<Anasayfa> {
     final double ekranYuksekligi = ekranBilgisi.size.height;
     final double ekranGenisligi = ekranBilgisi.size.width;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Aktuel Kataloğu"),
-        centerTitle: true,
-      ),
-      body: FutureBuilder<List<Kategoriler>>(
-        future: tumKategorileriGoster(),
-        builder: (context,snapshot){
-          if(snapshot.hasData){
-            var kategoriListesi = snapshot.data;
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 2 / 3.5,
-              ),
-              itemCount: kategoriListesi!.length,
-              itemBuilder: (context,indeks){
-                var kategori = kategoriListesi[indeks];
-                return GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => BrosurlerSayfa(kategori: kategori,)));
-                  },
-                  child: Card(
-                    child: SizedBox(
-                      height: 50,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Spacer(),
-                          Image.network("http://10.0.2.2/aktuel/resimler/marketler/${kategori.kategori_resim}"),
-                          Spacer(),
-                          Text(kategori.kategori_ad, style: TextStyle(
-                              fontFamily: 'LobsterRegular',
-                              fontSize: 25,
-                              color: Colors.red,
-                          ),),
-                          Spacer(),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            );
-          }else{
-            return Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
-              ),
-            );
-          }
-        },
-      ),
 
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: ekranYuksekligi/12,
+          title: Text("Aktüel Broşürler"),
+          centerTitle: true,
+          bottom: TabBar(
+            tabs: [
+              Tab(text: "Marketler", icon: Icon(Icons.shopping_cart),),
+              Tab(text: "Broşürler", icon: Icon(Icons.text_snippet),),
+              Tab(text: "Favoriler", icon: Icon(Icons.favorite),),
+            ],
+            unselectedLabelColor: Colors.black,
+            indicatorColor: Colors.white,
+            labelColor: Colors.white,
+          ),
+        ),
+        drawer: Drawer(),
+        body: TabBarView(
+          children: [
+            Marketler(),
+            Brosurler(),
+            Favoriler(),
+          ],
+        ),
+      ),
     );
   }
 }
