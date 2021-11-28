@@ -1,7 +1,8 @@
-import 'package:aktuel_brosurler/Models/FilmlerSayfa.dart';
+import 'package:aktuel_brosurler/Models/BrosurlerSayfa.dart';
 import 'package:aktuel_brosurler/Models/Kategoriler.dart';
 import 'package:aktuel_brosurler/Models/KategorilerCevap.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -68,7 +69,7 @@ class _AnasayfaState extends State<Anasayfa> {
                 var kategori = kategoriListesi[indeks];
                 return GestureDetector(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => FilmlerSayfa(kategori: kategori,)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BrosurlerSayfa(kategori: kategori,)));
                   },
                   child: Card(
                     child: SizedBox(
@@ -79,7 +80,11 @@ class _AnasayfaState extends State<Anasayfa> {
                           Spacer(),
                           Image.network("http://10.0.2.2/aktuel/resimler/marketler/${kategori.kategori_resim}"),
                           Spacer(),
-                          Text(kategori.kategori_ad),
+                          Text(kategori.kategori_ad, style: TextStyle(
+                              fontFamily: 'LobsterRegular',
+                              fontSize: 25,
+                              color: Colors.red,
+                          ),),
                           Spacer(),
                         ],
                       ),
@@ -89,7 +94,11 @@ class _AnasayfaState extends State<Anasayfa> {
               },
             );
           }else{
-            return Center();
+            return Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+              ),
+            );
           }
         },
       ),

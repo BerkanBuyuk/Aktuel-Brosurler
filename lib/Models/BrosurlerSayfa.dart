@@ -1,31 +1,31 @@
 import 'package:aktuel_brosurler/Models/DetaySayfa.dart';
-import 'package:aktuel_brosurler/Models/Filmler.dart';
-import 'package:aktuel_brosurler/Models/FilmlerCevap.dart';
+import 'package:aktuel_brosurler/Models/Brosurler.dart';
+import 'package:aktuel_brosurler/Models/BrosurlerCevap.dart';
 import 'package:aktuel_brosurler/Models/Kategoriler.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class FilmlerSayfa extends StatefulWidget {
+class BrosurlerSayfa extends StatefulWidget {
   Kategoriler kategori;
 
-  FilmlerSayfa({required this.kategori});
+  BrosurlerSayfa({required this.kategori});
 
   @override
-  _FilmlerSayfaState createState() => _FilmlerSayfaState();
+  _BrosurlerSayfaState createState() => _BrosurlerSayfaState();
 }
 
-class _FilmlerSayfaState extends State<FilmlerSayfa> {
+class _BrosurlerSayfaState extends State<BrosurlerSayfa> {
 
-  List<Filmler> parseFilmlerCevap(String cevap){
-    return FilmlerCevap.fromJson(json.decode(cevap)).filmlerListesi;
+  List<Brosurler> parseBrosurlerCevap(String cevap){
+    return BrosurlerCevap.fromJson(json.decode(cevap)).brosurlerListesi;
   }
 
-  Future<List<Filmler>> filmleriGoster(int kategori_id) async {
+  Future<List<Brosurler>> brosurleriGoster(int kategori_id) async {
     var url = Uri.parse("http://10.0.2.2/aktuel/filmler_by_kategori_id.php");
     var veri = {"kategori_id":kategori_id.toString()};
     var cevap = await http.post(url,body: veri);
-    return parseFilmlerCevap(cevap.body);
+    return parseBrosurlerCevap(cevap.body);
   }
 
   @override
@@ -35,22 +35,22 @@ class _FilmlerSayfaState extends State<FilmlerSayfa> {
         title: Text("${widget.kategori.kategori_ad} Broşürleri"),
         centerTitle: true,
       ),
-      body: FutureBuilder<List<Filmler>>(
-        future: filmleriGoster(int.parse(widget.kategori.kategori_id)),
+      body: FutureBuilder<List<Brosurler>>(
+        future: brosurleriGoster(int.parse(widget.kategori.kategori_id)),
         builder: (context,snapshot){
           if(snapshot.hasData){
-            var filmlerListesi = snapshot.data;
+            var brosurlerListesi = snapshot.data;
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 2 / 3.5,
               ),
-              itemCount: filmlerListesi!.length,
+              itemCount: brosurlerListesi!.length,
               itemBuilder: (context,indeks){
-                var film = filmlerListesi[indeks];
+                var brosur = brosurlerListesi[indeks];
                 return GestureDetector(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetaySayfa(film: film ,)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetaySayfa(brosur: brosur ,)));
                   },
                   child: Card(
                     child: Column(
@@ -58,9 +58,13 @@ class _FilmlerSayfaState extends State<FilmlerSayfa> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Image.network("http://10.0.2.2/aktuel/resimler/brosurler/${film.film_resim}"),
+                          child: Image.network("http://10.0.2.2/aktuel/resimler/brosurler/${brosur.brosur_resim}"),
                         ),
-                        Text(film.film_ad,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+                        Text(brosur.brosur_ad,style: TextStyle(
+                            fontSize: 18.6,
+                            fontFamily: 'LobsterRegular',
+                            color: Colors.red,
+                        ),),
                       ],
                     ),
                   ),
@@ -68,7 +72,11 @@ class _FilmlerSayfaState extends State<FilmlerSayfa> {
               },
             );
           }else{
-            return Center();
+            return Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+              ),
+            );
           }
         },
       ),

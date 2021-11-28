@@ -33,6 +33,7 @@ dependencies:
   http: ^0.13.4
   carousel_slider: ^4.0.0
   smooth_page_indicator: ^1.0.0+2
+  google_fonts: ^2.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -55,11 +56,16 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  fonts:
+    - family: LobsterRegular
+      fonts:
+        - asset: assets/LobsterRegular.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

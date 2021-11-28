@@ -1,10 +1,10 @@
-import 'package:aktuel_brosurler/Models/Filmler.dart';
+import 'package:aktuel_brosurler/Models/Brosurler.dart';
 import 'package:flutter/material.dart';
 
 class DetaySayfa extends StatefulWidget {
-  Filmler film;
+  Brosurler brosur;
 
-  DetaySayfa({required this.film});
+  DetaySayfa({required this.brosur});
 
   @override
   _DetaySayfaState createState() => _DetaySayfaState();
@@ -15,7 +15,7 @@ class _DetaySayfaState extends State<DetaySayfa> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.film.film_ad),
+        title: Text(widget.brosur.brosur_ad),
         centerTitle: true,
       ),
       body: Center(
@@ -23,9 +23,9 @@ class _DetaySayfaState extends State<DetaySayfa> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Image.network("http://10.0.2.2/aktuel/resimler/brosurler/${widget.film.film_resim}"),
-              Text(widget.film.film_yil.toString(),style: TextStyle(fontSize: 30),),
-              Text(widget.film.yonetmen.yonetmen_ad,style: TextStyle(fontSize: 30),),
+              Image.network("http://10.0.2.2/aktuel/resimler/brosurler/${widget.brosur.brosur_resim}"),
+              Text(widget.brosur.brosur_yil.toString(),style: TextStyle(fontSize: 30),),
+              Text(widget.brosur.aciklama.aciklama_ad,style: TextStyle(fontSize: 30),),
             ],
           ),
         ),
