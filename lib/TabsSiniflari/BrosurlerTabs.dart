@@ -1,5 +1,6 @@
 import 'package:aktuel_brosurler/Models/Brosurler.dart';
 import 'package:aktuel_brosurler/Models/BrosurlerCevap.dart';
+import 'package:aktuel_brosurler/Models/DetaySayfa.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:convert';
@@ -43,12 +44,13 @@ class _BrosurlerTabsState extends State<BrosurlerTabs> {
         if(snapshot.hasData){
           var brosurlerListesi = snapshot.data;
           return ListView.builder(
+            reverse: true,
             itemCount: brosurlerListesi!.length,
             itemBuilder: (context,indeks){
               var brosur = brosurlerListesi[indeks];
               return GestureDetector(
                 onTap: (){
-                  //Navigator.push(context, MaterialPageRoute(builder: (context) => DetaySayfa(brosur: brosur ,)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetaySayfa(brosur: brosur ,)));
                 },
                 child: Card(
                   child: SizedBox(
@@ -67,12 +69,18 @@ class _BrosurlerTabsState extends State<BrosurlerTabs> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(9.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(brosur.brosur_ad,style: TextStyle(
+                                  fontSize: 18.6,
+                                  fontFamily: 'LobsterRegular',
+                                  color: Colors.red,
+                                ),
+                                ),
+                                Text(brosur.brosur_yil,style: TextStyle(
                                   fontSize: 18.6,
                                   fontFamily: 'LobsterRegular',
                                   color: Colors.red,
