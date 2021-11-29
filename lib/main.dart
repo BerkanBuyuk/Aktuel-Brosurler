@@ -1,5 +1,5 @@
 import 'package:aktuel_brosurler/TabsSiniflari/BrosurlerTabs.dart';
-import 'package:aktuel_brosurler/TabsSiniflari/FavorilerTabs.dart';
+import 'package:aktuel_brosurler/TabsSiniflari/WebTabs.dart';
 import 'package:aktuel_brosurler/TabsSiniflari/MarketlerTabs.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +50,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
             tabs: [
               Tab(text: "Marketler", icon: Icon(Icons.shopping_cart),),
               Tab(text: "Broşürler", icon: Icon(Icons.text_snippet),),
-              Tab(text: "Favoriler", icon: Icon(Icons.favorite),),
+              Tab(text: "Web", icon: Icon(Icons.web),),
             ],
             unselectedLabelColor: Colors.black,
             indicatorColor: Colors.white,
@@ -62,7 +62,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
           children: [
             MarketlerTabs(),
             BrosurlerTabs(),
-            FavorilerTabs(),
+            WebTabs(),
           ],
         ),
       ),

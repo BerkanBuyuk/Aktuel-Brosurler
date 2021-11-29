@@ -3,7 +3,6 @@ import 'package:aktuel_brosurler/Models/Kategoriler.dart';
 import 'package:aktuel_brosurler/Models/KategorilerCevap.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -27,16 +26,6 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
   }
 
 
-  bool bimFavoriMi = false;
-  bool a101FavoriMi = false;
-  bool sokFavoriMi = false;
-  bool migrosFavoriMi = false;
-  bool carrefourFavoriMi = false;
-  bool metroFavoriMi = false;
-  bool kimFavoriMi = false;
-  bool onurFavoriMi = false;
-  bool fileFavoriMi = false;
-
   bool bimBildirim = false;
   bool a101Bildirim = false;
   bool sokBildirim = false;
@@ -46,7 +35,6 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
   bool kimBildirim = false;
   bool onurBildirim = false;
   bool fileBildirim = false;
-
 
 
   @override
@@ -89,520 +77,261 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
                           fontSize: 25,
                           color: Colors.red,
                         ),),
+
                         Spacer(),
 
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                              width: ekranGenisligi/10,
+                              height: ekranYuksekligi/20,
+                              child: FloatingActionButton(
+                                onPressed: () {
+                                  setState(() {
 
+                                    if(kategori.kategori_ad == "Bim"){
+                                      bimBildirim = !bimBildirim;
 
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SizedBox(
-                                width: ekranGenisligi/10,
-                                height: ekranYuksekligi/20,
-                                child: FloatingActionButton(
-                                  onPressed: () {
-                                    setState(() {
-
-                                      if(kategori.kategori_ad == "Bim"){
-                                        bimBildirim = !bimBildirim;
-
-                                        if(bimBildirim == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Açık",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-
-                                        if(bimBildirim == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                      if(bimBildirim == true){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Açık",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
                                       }
 
+                                      if(bimBildirim == false){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
+                                      }
+                                    }
 
-                                      if(kategori.kategori_ad == "A101"){
-                                        a101Bildirim = !a101Bildirim;
 
-                                        if(a101Bildirim == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Açık",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                    if(kategori.kategori_ad == "A101"){
+                                      a101Bildirim = !a101Bildirim;
 
-                                        if(a101Bildirim == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                      if(a101Bildirim == true){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Açık",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
                                       }
 
-                                      if(kategori.kategori_ad == "Şok"){
-                                        sokBildirim = !sokBildirim;
+                                      if(a101Bildirim == false){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
+                                      }
+                                    }
 
-                                        if(sokBildirim == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Açık",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                    if(kategori.kategori_ad == "Şok"){
+                                      sokBildirim = !sokBildirim;
 
-                                        if(sokBildirim == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                      if(sokBildirim == true){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Açık",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
                                       }
 
-                                      if(kategori.kategori_ad == "Migros"){
-                                        migrosBildirim = !migrosBildirim;
+                                      if(sokBildirim == false){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
+                                      }
+                                    }
 
-                                        if(migrosBildirim == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Açık",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                    if(kategori.kategori_ad == "Migros"){
+                                      migrosBildirim = !migrosBildirim;
 
-                                        if(migrosBildirim == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                      if(migrosBildirim == true){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Açık",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
                                       }
 
-                                      if(kategori.kategori_ad == "Carrefour"){
-                                        carrefourBildirim = !carrefourBildirim;
+                                      if(migrosBildirim == false){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
+                                      }
+                                    }
 
-                                        if(carrefourBildirim == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Açık",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                    if(kategori.kategori_ad == "Carrefour"){
+                                      carrefourBildirim = !carrefourBildirim;
 
-                                        if(carrefourBildirim == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                      if(carrefourBildirim == true){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Açık",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
                                       }
 
-                                      if(kategori.kategori_ad == "Metro"){
-                                        metroBildirim = !metroBildirim;
+                                      if(carrefourBildirim == false){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
+                                      }
+                                    }
 
-                                        if(metroBildirim == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Açık",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                    if(kategori.kategori_ad == "Metro"){
+                                      metroBildirim = !metroBildirim;
 
-                                        if(metroBildirim == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                      if(metroBildirim == true){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Açık",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
                                       }
 
-                                      if(kategori.kategori_ad == "Kim"){
-                                        kimBildirim = !kimBildirim;
+                                      if(metroBildirim == false){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
+                                      }
+                                    }
 
-                                        if(kimBildirim == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Açık",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                    if(kategori.kategori_ad == "Kim"){
+                                      kimBildirim = !kimBildirim;
 
-                                        if(kimBildirim == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                      if(kimBildirim == true){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Açık",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
                                       }
 
-                                      if(kategori.kategori_ad == "Onur"){
-                                        onurBildirim = !onurBildirim;
+                                      if(kimBildirim == false){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
+                                      }
+                                    }
 
-                                        if(onurBildirim == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Açık",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                    if(kategori.kategori_ad == "Onur"){
+                                      onurBildirim = !onurBildirim;
 
-                                        if(onurBildirim == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                      if(onurBildirim == true){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Açık",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
                                       }
 
-                                      if(kategori.kategori_ad == "File"){
-                                        fileBildirim = !fileBildirim;
+                                      if(onurBildirim == false){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
+                                      }
+                                    }
 
-                                        if(fileBildirim == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Açık",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                    if(kategori.kategori_ad == "File"){
+                                      fileBildirim = !fileBildirim;
 
-                                        if(fileBildirim == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
+                                      if(fileBildirim == true){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Açık",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
                                       }
 
-                                    });
-                                  },
-                                  child: Icon(Icons.notifications_active),
-                                ),
+                                      if(fileBildirim == false){
+                                        Fluttertoast.showToast(
+                                          msg: "${kategori.kategori_ad} Bildirimleri Kapalı",
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                        );
+                                      }
+                                    }
+
+                                  });
+                                },
+                                child: Icon(Icons.notifications_active),
                               ),
                             ),
-
-                            Spacer(),
-
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SizedBox(
-                                width: ekranGenisligi/10,
-                                height: ekranYuksekligi/20,
-                                child: FloatingActionButton(
-                                  isExtended: true,
-                                  onPressed: () {
-                                    setState(() {
-
-                                      if(kategori.kategori_ad == "Bim"){
-                                        bimFavoriMi = !bimFavoriMi;
-
-                                        if(bimFavoriMi == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilere Eklendi",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-
-                                        if(bimFavoriMi == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilerden Çıkarıldı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-                                      }
-
-                                      if(kategori.kategori_ad == "A101"){
-                                        a101FavoriMi = !a101FavoriMi;
-
-                                        if(a101FavoriMi == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilere Eklendi",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-
-                                        if(a101FavoriMi == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilerden Çıkarıldı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-                                      }
-
-                                      if(kategori.kategori_ad == "Şok"){
-                                        sokFavoriMi = !sokFavoriMi;
-
-                                        if(sokFavoriMi == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilere Eklendi",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-
-                                        if(sokFavoriMi == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilerden Çıkarıldı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-                                      }
-
-                                      if(kategori.kategori_ad == "Migros"){
-                                        migrosFavoriMi = !migrosFavoriMi;
-
-                                        if(migrosFavoriMi == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilere Eklendi",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-
-                                        if(migrosFavoriMi == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilerden Çıkarıldı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-                                      }
-
-                                      if(kategori.kategori_ad == "Carrefour"){
-                                        carrefourFavoriMi = !carrefourFavoriMi;
-
-                                        if(carrefourFavoriMi == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilere Eklendi",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-
-                                        if(carrefourFavoriMi == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilerden Çıkarıldı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-                                      }
-
-                                      if(kategori.kategori_ad == "Metro"){
-                                        metroFavoriMi = !metroFavoriMi;
-
-                                        if(metroFavoriMi == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilere Eklendi",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-
-                                        if(metroFavoriMi == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilerden Çıkarıldı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-                                      }
-
-                                      if(kategori.kategori_ad == "Kim"){
-                                        kimFavoriMi = !kimFavoriMi;
-
-                                        if(kimFavoriMi == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilere Eklendi",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-
-                                        if(kimFavoriMi == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilerden Çıkarıldı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-                                      }
-
-                                      if(kategori.kategori_ad == "Onur"){
-                                        onurFavoriMi = !onurFavoriMi;
-
-                                        if(onurFavoriMi == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilere Eklendi",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-
-                                        if(onurFavoriMi == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilerden Çıkarıldı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-                                      }
-
-                                      if(kategori.kategori_ad == "File"){
-                                        fileFavoriMi = !fileFavoriMi;
-
-                                        if(fileFavoriMi == true){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilere Eklendi",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-
-                                        if(fileFavoriMi == false){
-                                          Fluttertoast.showToast(
-                                            msg: "${kategori.kategori_ad} Favorilerden Çıkarıldı",
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.black,
-                                            fontSize: 16.0,
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
-                                        }
-                                      }
-
-                                    });
-                                  },
-                                  child: Icon(Icons.favorite),
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-
-
-
 
                       ],
                     ),
