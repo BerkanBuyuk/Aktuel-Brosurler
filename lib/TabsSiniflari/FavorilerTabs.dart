@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Favoriler extends StatefulWidget {
-  const Favoriler({Key? key}) : super(key: key);
+class FavorilerTabs extends StatefulWidget {
+  const FavorilerTabs({Key? key}) : super(key: key);
 
   @override
-  _FavorilerState createState() => _FavorilerState();
+  _FavorilerTabsState createState() => _FavorilerTabsState();
 }
 
-class _FavorilerState extends State<Favoriler> {
+class _FavorilerTabsState extends State<FavorilerTabs> {
   @override
   Widget build(BuildContext context) {
 

@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 class BrosurlerSayfa extends StatefulWidget {
   Kategoriler kategori;
 
-  BrosurlerSayfa({required this.kategori});
+  BrosurlerSayfa({required this.kategori,});
 
   @override
   _BrosurlerSayfaState createState() => _BrosurlerSayfaState();
@@ -22,7 +22,7 @@ class _BrosurlerSayfaState extends State<BrosurlerSayfa> {
   }
 
   Future<List<Brosurler>> brosurleriGoster(int kategori_id) async {
-    var url = Uri.parse("http://10.0.2.2/aktuel/filmler_by_kategori_id.php");
+    var url = Uri.parse("http://10.0.2.2/aktuel/brosurler_by_kategori_id.php");
     var veri = {"kategori_id":kategori_id.toString()};
     var cevap = await http.post(url,body: veri);
     return parseBrosurlerCevap(cevap.body);

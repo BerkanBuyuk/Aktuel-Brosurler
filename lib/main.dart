@@ -1,6 +1,6 @@
-import 'package:aktuel_brosurler/TabsSiniflari/Brosurler.dart';
-import 'package:aktuel_brosurler/TabsSiniflari/Favoriler.dart';
-import 'package:aktuel_brosurler/TabsSiniflari/Marketler.dart';
+import 'package:aktuel_brosurler/TabsSiniflari/BrosurlerTabs.dart';
+import 'package:aktuel_brosurler/TabsSiniflari/FavorilerTabs.dart';
+import 'package:aktuel_brosurler/TabsSiniflari/MarketlerTabs.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -60,9 +60,9 @@ class _AnaSayfaState extends State<AnaSayfa> {
         drawer: Drawer(),
         body: TabBarView(
           children: [
-            Marketler(),
-            Brosurler(),
-            Favoriler(),
+            MarketlerTabs(),
+            BrosurlerTabs(),
+            FavorilerTabs(),
           ],
         ),
       ),
