@@ -12,6 +12,7 @@ class _IndirilenlerState extends State<Indirilenler> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text("İndirilenler"),
         centerTitle: true,
       ),

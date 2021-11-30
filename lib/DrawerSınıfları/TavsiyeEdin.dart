@@ -12,6 +12,7 @@ class _TavsiyeEdinState extends State<TavsiyeEdin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text("Tavsiye Edin"),
         centerTitle: true,
       ),

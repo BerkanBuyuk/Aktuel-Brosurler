@@ -12,6 +12,7 @@ class _KullanimIpuclariState extends State<KullanimIpuclari> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text("Kullanım İpuçları"),
         centerTitle: true,
       ),

@@ -39,6 +39,7 @@ class _BrosurlerSayfaState extends State<BrosurlerSayfa> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text("${widget.kategori.kategori_ad} Broşürleri"),
         centerTitle: true,
       ),

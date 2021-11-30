@@ -12,6 +12,7 @@ class _AyarlarState extends State<Ayarlar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text("Ayarlar"),
         centerTitle: true,
       ),

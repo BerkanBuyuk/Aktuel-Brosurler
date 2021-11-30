@@ -15,6 +15,7 @@ class _DetaySayfaState extends State<DetaySayfa> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text(widget.brosur.brosur_ad),
         centerTitle: true,
       ),

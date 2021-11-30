@@ -67,8 +67,6 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
     var ekranBilgisi = MediaQuery.of(context);
     final double ekranYuksekligi = ekranBilgisi.size.height;
-    final double ekranGenisligi = ekranBilgisi.size.width;
-
 
     return DefaultTabController(
       length: 3,

@@ -12,6 +12,7 @@ class _HakkindaState extends State<Hakkinda> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text("Hakkında"),
         centerTitle: true,
       ),

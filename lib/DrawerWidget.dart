@@ -42,7 +42,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
     var ekranBilgisi = MediaQuery.of(context);
     final double ekranYuksekligi = ekranBilgisi.size.height;
-    final double ekranGenisligi = ekranBilgisi.size.width;
 
     final urlImage = 'https://p7.hiclipart.com/preview/1008/303/692/shopping-cart-icon-product-return-shopping-cart-png.jpg';
 
@@ -51,12 +50,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
       child: Material(
         color: Colors.white,
         child: ListView(
-          //padding: padding,
           children: [
             SizedBox(
               height: ekranYuksekligi/9,
               child: DrawerHeader(
-                //padding: EdgeInsets.zero,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,

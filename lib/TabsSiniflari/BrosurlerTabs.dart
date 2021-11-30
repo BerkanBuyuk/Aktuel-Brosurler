@@ -58,7 +58,6 @@ class _BrosurlerTabsState extends State<BrosurlerTabs> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           SizedBox(
                             width: ekranGenisligi/3,

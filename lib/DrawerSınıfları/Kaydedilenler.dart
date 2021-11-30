@@ -12,6 +12,7 @@ class _KaydedilenlerState extends State<Kaydedilenler> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text("Kaydedilenler"),
         centerTitle: true,
       ),
