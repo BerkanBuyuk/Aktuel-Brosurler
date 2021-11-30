@@ -1,8 +1,6 @@
 <h1 align="center">Merhaba, Ben <a href="https://github.com/berkanbuyuk" target="_blank">Berkan Büyük</a> !</h1>
 <h2 align="center">Mobile Developer alanında kendimi geliştiriyor, kariyerimi yazılım odaklı kurmaya çalışıyorum.</h1>
 
-<br/>
-
 --- 
 
 <h2 align="center">⁉️ Proje Hakkında ⁉️</h2>
@@ -32,8 +30,6 @@
   <img src="https://user-images.githubusercontent.com/82314218/144130778-13df14d3-304a-4f7e-9815-9d0aeb7daa2b.png" width="200" height="400" />
 </p>
 
-<br/>
-
 ---
 
 <h2 align="center">☎️ İletişim ☎️</h2>
@@ -60,4 +56,3 @@
     </tr>
   </tbody>
 </table>
-      
