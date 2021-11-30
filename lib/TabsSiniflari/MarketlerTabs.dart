@@ -2,6 +2,7 @@ import 'package:aktuel_brosurler/Models/BrosurlerSayfa.dart';
 import 'package:aktuel_brosurler/Models/Kategoriler.dart';
 import 'package:aktuel_brosurler/Models/KategorilerCevap.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -14,6 +15,45 @@ class MarketlerTabs extends StatefulWidget {
 }
 
 class _MarketlerTabsState extends State<MarketlerTabs> {
+
+
+  var flp = FlutterLocalNotificationsPlugin();
+
+  Future<void> kurulum() async {
+    var androidAyari = AndroidInitializationSettings("@mipmap/launch_image");
+    //var iosAyari = IOSInitializationSettings();
+    var kurulumAyari = InitializationSettings(android: androidAyari, /*iOS: iosAyari*/);
+
+    await flp.initialize(kurulumAyari, onSelectNotification: bildirimSecilme);
+  }
+
+
+  Future<void> bildirimSecilme(String? payLoad) async {
+    if(payLoad != null){
+      print("bildirim seçildi = $payLoad");
+    }
+  }
+
+  Future<void> bildirimGoster() async {
+    var androidBildirimDetay = AndroidNotificationDetails("Kanal id", "Kanal başlık", channelDescription: "Kanal Açıklama",
+      priority: Priority.high,
+      importance: Importance.max,
+    );
+
+    //var iosBildirimDetay = IOSNotificationDetails();
+    var bildirimDetay = NotificationDetails(android: androidBildirimDetay, /*iOS: iosBildirimDetay*/);
+
+    await flp.show(0, "Aktuel Kataloğu", "Bildirim Açık", bildirimDetay, payload: "payload içerik");
+
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    kurulum();
+  }
+
+
 
   List<Kategoriler> parseKategorilerCevap(String cevap){
     return KategorilerCevap.fromJson(json.decode(cevap)).kategorilerListesi;
@@ -102,6 +142,7 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
                                         );
+                                        bildirimGoster();
                                       }
 
                                       if(bimBildirim == false){
@@ -129,6 +170,7 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
                                         );
+                                        bildirimGoster();
                                       }
 
                                       if(a101Bildirim == false){
@@ -155,6 +197,7 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
                                         );
+                                        bildirimGoster();
                                       }
 
                                       if(sokBildirim == false){
@@ -181,6 +224,7 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
                                         );
+                                        bildirimGoster();
                                       }
 
                                       if(migrosBildirim == false){
@@ -207,6 +251,7 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
                                         );
+                                        bildirimGoster();
                                       }
 
                                       if(carrefourBildirim == false){
@@ -233,6 +278,7 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
                                         );
+                                        bildirimGoster();
                                       }
 
                                       if(metroBildirim == false){
@@ -259,6 +305,7 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
                                         );
+                                        bildirimGoster();
                                       }
 
                                       if(kimBildirim == false){
@@ -285,6 +332,7 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
                                         );
+                                        bildirimGoster();
                                       }
 
                                       if(onurBildirim == false){
@@ -311,6 +359,7 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
                                         );
+                                        bildirimGoster();
                                       }
 
                                       if(fileBildirim == false){
