@@ -30,7 +30,6 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
 
   Future<void> bildirimSecilme(String? payLoad) async {
     if(payLoad != null){
-      print("bildirim seçildi = $payLoad");
     }
   }
 
@@ -43,7 +42,7 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
     //var iosBildirimDetay = IOSNotificationDetails();
     var bildirimDetay = NotificationDetails(android: androidBildirimDetay, /*iOS: iosBildirimDetay*/);
 
-    await flp.show(0, "Aktuel Kataloğu", "Bildirim Açık", bildirimDetay, payload: "payload içerik");
+    await flp.show(0, "Aktuel Kataloğu", "Bildirim Açık", bildirimDetay, payload: "");
 
   }
 
@@ -127,6 +126,7 @@ class _MarketlerTabsState extends State<MarketlerTabs> {
                               width: ekranGenisligi/10,
                               height: ekranYuksekligi/20,
                               child: FloatingActionButton(
+                                backgroundColor: Colors.red,
                                 onPressed: () {
                                   setState(() {
 

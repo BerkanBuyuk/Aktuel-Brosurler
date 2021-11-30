@@ -27,24 +27,27 @@ class _WebTabsState extends State<WebTabs> {
   @override
   Widget build(BuildContext context) {
 
+
+    var ekranBilgisi = MediaQuery.of(context);
+    final double ekranYuksekligi = ekranBilgisi.size.height;
+
     return FutureBuilder<List<Kategoriler>>(
       future: tumKategorileriGoster(),
       builder: (context,snapshot){
         if(snapshot.hasData){
           var kategorilerListesi = snapshot.data;
-          return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 2 / 3.5,
-            ),
+          return ListView.builder(
             itemCount: kategorilerListesi!.length,
             itemBuilder: (context,indeks){
               var kategori = kategorilerListesi[indeks];
-              return Card(
-                child: Center(
-                  child: WebView(
-                    initialUrl: "${kategori.kategori_web}",
-                    javascriptMode: JavascriptMode.unrestricted,
+              return SizedBox(
+                height: ekranYuksekligi,
+                child: Card(
+                  child: Center(
+                    child: WebView(
+                      initialUrl: "${kategori.kategori_web}",
+                      javascriptMode: JavascriptMode.unrestricted,
+                    ),
                   ),
                 ),
               );
