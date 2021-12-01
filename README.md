@@ -16,7 +16,7 @@
 <h2 align="center">👀 Proje Görünümü 👀</h2>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/82314218/144128874-223a7767-1ae8-48f7-9742-f1a4ced94d03.png" width="200" height="400" />
-  <img src="https://user-images.githubusercontent.com/82314218/144129065-07774374-d281-4e93-bbec-20c8510eeb76.png" width="200" height="400" />
+  <img src="https://user-images.githubusercontent.com/82314218/144253067-78702092-d5eb-4428-bfdf-01799c52bb5f.png" width="200" height="400" />
   <img src="https://user-images.githubusercontent.com/82314218/144129125-04214a0e-97ea-40f0-bfc9-aa6d82711797.png" width="200" height="400" />
 </p>
 <p align="center">
