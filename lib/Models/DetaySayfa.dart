@@ -25,8 +25,24 @@ class _DetaySayfaState extends State<DetaySayfa> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Image.network("http://10.0.2.2/aktuel/resimler/brosurler/${widget.brosur.brosur_resim}"),
-              Text(widget.brosur.brosur_yil.toString(),style: TextStyle(fontSize: 30),),
-              Text(widget.brosur.aciklama.aciklama_ad,style: TextStyle(fontSize: 30),),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(widget.brosur.brosur_yil,style: TextStyle(
+                    fontSize: 30,
+                    fontFamily: 'LobsterRegular',
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(widget.brosur.aciklama.aciklama_ad,style: TextStyle(
+                    fontSize: 30,
+                    fontFamily: 'LobsterRegular',
+                    color: Colors.red,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
